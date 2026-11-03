@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "baslik": "Web Programlama Atölyesi",
+        "tur": "atolye",
+        "tarih": "2026-11-20",
+        "yer": "Mühendislik Fakültesi B-204",
+        "kontenjan": 30
+    },
+    {
+        "id": 2,
+        "baslik": "Git ve GitHub Atölyesi",
+        "tur": "atolye",
+        "tarih": "2026-11-25",
+        "yer": "Bilgisayar Laboratuvarı 2",
+        "kontenjan": 25
+    },
+    {
+        "id": 3,
+        "baslik": "Yapay Zekâ ve Gelecek Söyleşisi",
+        "tur": "soylesi",
+        "tarih": "2026-12-02",
+        "yer": "Merkez Konferans Salonu",
+        "kontenjan": 200
+    },
+    {
+        "id": 4,
+        "baslik": "Yazılım Sektöründe Kariyer Söyleşisi",
+        "tur": "soylesi",
+        "tarih": "2026-12-09",
+        "yer": "Mühendislik Fakültesi Amfi 1",
+        "kontenjan": 150
+    },
+    {
+        "id": 5,
+        "baslik": "Bilgisayar Mühendisliği Topluluğu Tanışma Toplantısı",
+        "tur": "topluluk",
+        "tarih": "2026-11-18",
+        "yer": "Öğrenci Kulüpleri Odası",
+        "kontenjan": 120
+    },
+    {
+        "id": 6,
+        "baslik": "KULUP ETKINLIGI",
+        "tur": "topluluk",
+        "tarih": "2026-12-15",
+        "yer": "Kültür Merkezi",
+        "kontenjan": 60
+    }
+]
