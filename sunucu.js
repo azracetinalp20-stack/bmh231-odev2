@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 
 const sunucu = http.createServer((req, res) => {
     console.log(req.method, req.url);
@@ -13,6 +14,13 @@ const sunucu = http.createServer((req, res) => {
             "Allow": "GET"
         });
         res.end("Bu yöntem desteklenmiyor");
+        return;
+    }
+
+    if (url.pathname === "/api/etkinlikler") {
+        const metin = fs.readFileSync("etkinlikler.json", "utf-8");
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+        res.end(metin);
         return;
     }
 
