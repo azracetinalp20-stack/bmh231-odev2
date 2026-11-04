@@ -19,8 +19,14 @@ const sunucu = http.createServer((req, res) => {
 
     if (url.pathname === "/api/etkinlikler") {
         const metin = fs.readFileSync("etkinlikler.json", "utf-8");
+        const etkinlikler = JSON.parse(metin);
+        const tur = url.searchParams.get("tur");
+        let sonuc = etkinlikler;
+        if (tur) {
+            sonuc = etkinlikler.filter((e) => e.tur === tur);
+        }
         res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-        res.end(metin);
+        res.end(JSON.stringify(sonuc));
         return;
     }
 
