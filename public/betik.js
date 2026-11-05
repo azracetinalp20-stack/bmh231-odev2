@@ -1,7 +1,11 @@
 const kartlarKutusu = document.getElementById("kartlar");
 const durumYazisi = document.getElementById("durum");
+const aramaKutusu = document.getElementById("arama");
+const dugmeler = document.querySelectorAll(".filtre");
 
 let etkinlikler = [];
+let seciliTur = "tumu";
+let aramaMetni = "";
 
 const turAdlari = {
     atolye: "Atölye",
@@ -47,6 +51,29 @@ function ciz(liste) {
     });
 }
 
+function filtrele() {
+    const sonuc = etkinlikler.filter((e) => {
+        const turUyuyor = seciliTur === "tumu" || e.tur === seciliTur;
+        const aramaUyuyor = e.baslik.toLowerCase().includes(aramaMetni.toLowerCase());
+        return turUyuyor && aramaUyuyor;
+    });
+    ciz(sonuc);
+}
+
+dugmeler.forEach((dugme) => {
+    dugme.addEventListener("click", () => {
+        dugmeler.forEach((d) => d.classList.remove("secili"));
+        dugme.classList.add("secili");
+        seciliTur = dugme.dataset.tur;
+        filtrele();
+    });
+});
+
+aramaKutusu.addEventListener("input", () => {
+    aramaMetni = aramaKutusu.value;
+    filtrele();
+});
+
 async function etkinlikleriYukle() {
     durumYazisi.textContent = "Yükleniyor...";
     try {
@@ -55,7 +82,7 @@ async function etkinlikleriYukle() {
             throw new Error("Sunucu hatası: " + yanit.status);
         }
         etkinlikler = await yanit.json();
-        ciz(etkinlikler);
+        filtrele();
     } catch (hata) {
         durumYazisi.textContent = "Etkinlikler yüklenemedi. Lütfen daha sonra tekrar deneyin.";
         console.error(hata);
