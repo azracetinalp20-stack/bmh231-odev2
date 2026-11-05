@@ -90,3 +90,40 @@ async function etkinlikleriYukle() {
 }
 
 etkinlikleriYukle();
+
+const form = document.getElementById("oneri-formu");
+const formMesaj = document.getElementById("form-mesaj");
+
+form.addEventListener("submit", (olay) => {
+    olay.preventDefault();
+
+    const ad = document.getElementById("ad").value.trim();
+    const tarih = document.getElementById("tarih").value;
+    const eposta = document.getElementById("eposta").value.trim();
+
+    const hatalar = [];
+
+    if (ad.length < 5) {
+        hatalar.push("Etkinlik adı en az 5 karakter olmalı.");
+    }
+
+    const bugun = new Date();
+    bugun.setHours(0, 0, 0, 0);
+    if (tarih === "" || new Date(tarih) < bugun) {
+        hatalar.push("Tarih boş ya da geçmiş bir gün olamaz.");
+    }
+
+    const epostaDesen = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!epostaDesen.test(eposta)) {
+        hatalar.push("Geçerli bir e-posta adresi girin.");
+    }
+
+    if (hatalar.length > 0) {
+        formMesaj.textContent = hatalar.join(" ");
+        formMesaj.className = "hata";
+    } else {
+        formMesaj.textContent = "Teşekkürler! Önerin alındı.";
+        formMesaj.className = "basari";
+        form.reset();
+    }
+});
