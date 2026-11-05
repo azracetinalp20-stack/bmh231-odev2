@@ -1,0 +1,160 @@
+:root {
+    --renk-ana: #1e5aa8;
+    --renk-vurgu: #f2a900;
+    --renk-zemin: #f4f6fa;
+    --renk-metin: #1d2330;
+    --bosluk: 16px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    background: var(--renk-zemin);
+    color: var(--renk-metin);
+}
+
+.ust-bant {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--bosluk);
+    background: var(--renk-ana);
+    color: white;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    margin-left: var(--bosluk);
+    text-decoration: none;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--bosluk);
+}
+
+.arac-cubugu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--bosluk);
+    margin-bottom: var(--bosluk);
+}
+
+.filtreler {
+    display: flex;
+    gap: 8px;
+}
+
+.filtre {
+    padding: 8px 14px;
+    border: 1px solid var(--renk-ana);
+    background: white;
+    color: var(--renk-ana);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.filtre.secili {
+    background: var(--renk-ana);
+    color: white;
+}
+
+.arama {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 6px;
+}
+
+.kartlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--bosluk);
+}
+
+.kart {
+    background: white;
+    padding: var(--bosluk);
+    border-radius: 8px;
+    border-left: 5px solid var(--renk-vurgu);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.kart h3 {
+    margin-top: 0;
+}
+
+.etiket {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: var(--renk-ana);
+    color: white;
+    font-size: 0.85rem;
+}
+
+#oner {
+    margin-top: 32px;
+}
+
+.alan {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: var(--bosluk);
+    max-width: 400px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background: var(--renk-ana);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.hata {
+    color: #b00020;
+}
+
+.basari {
+    color: #1b7a3a;
+}
+
+footer {
+    text-align: center;
+    padding: var(--bosluk);
+    color: #555;
+}
+
+@media (max-width: 600px) {
+
+    .ust-bant,
+    .arac-cubugu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filtreler {
+        flex-wrap: wrap;
+    }
+}
