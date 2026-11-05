@@ -30,6 +30,22 @@ const sunucu = http.createServer((req, res) => {
         return;
     }
 
+    if (url.pathname.startsWith("/api/etkinlikler/")) {
+        const parcalar = url.pathname.split("/");
+        const id = Number(parcalar[3]);
+        const metin = fs.readFileSync("etkinlikler.json", "utf-8");
+        const etkinlikler = JSON.parse(metin);
+        const etkinlik = etkinlikler.find((e) => e.id === id);
+        if (etkinlik) {
+            res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+            res.end(JSON.stringify(etkinlik));
+        } else {
+            res.writeHead(404, { "Content-Type": "application/json; charset=utf-8" });
+            res.end(JSON.stringify({ hata: "Etkinlik bulunamadı" }));
+        }
+        return;
+    }
+
     res.end("calisiyor");
 });
 
