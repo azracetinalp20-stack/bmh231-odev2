@@ -1,5 +1,8 @@
 const http = require("http");
 const fs = require("fs");
+const path = require("path");
+
+const PUBLIC = path.join(__dirname, "public");
 
 const sunucu = http.createServer((req, res) => {
     console.log(req.method, req.url);
@@ -46,7 +49,34 @@ const sunucu = http.createServer((req, res) => {
         return;
     }
 
-    res.end("calisiyor");
+    let istenen = url.pathname;
+    if (istenen === "/") {
+        istenen = "/index.html";
+    }
+    const dosyaYolu = path.join(PUBLIC, istenen);
+
+    if (!dosyaYolu.startsWith(PUBLIC)) {
+        res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+        res.end("Bulunamadı");
+        return;
+    }
+
+    const turler = {
+        ".html": "text/html; charset=utf-8",
+        ".css": "text/css; charset=utf-8",
+        ".js": "text/javascript; charset=utf-8"
+    };
+    const uzanti = path.extname(dosyaYolu);
+
+    fs.readFile(dosyaYolu, (hata, icerik) => {
+        if (hata) {
+            res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+            res.end("Bulunamadı");
+            return;
+        }
+        res.writeHead(200, { "Content-Type": turler[uzanti] || "application/octet-stream" });
+        res.end(icerik);
+    });
 });
 
 sunucu.listen(3000, () => {
