@@ -17,7 +17,7 @@ function kartYap(e) {
     const kart = document.createElement("article");
     kart.className = "kart";
 
-    const baslik = document.createElement("h3");
+    const baslik = document.createElement("h2");
     baslik.textContent = e.baslik;
 
     const tarih = document.createElement("p");
